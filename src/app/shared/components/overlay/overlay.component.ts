@@ -13,11 +13,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Overlay, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { OverlayService } from '../../services/overlay.service';
+import { MatCardModule } from '@angular/material/card'
+import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-overlay',
+  selector: 'overlay',
   standalone: true,
   imports: [
-    BrowserModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    CommonModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -109,7 +113,7 @@ export class OverlayComponent {
   }
 
   public hideOverlay() {
-    if (this.overlayRef && this.overlayRef.hasAttached) {
+    if (this.overlayRef && this.overlayRef.hasAttached()) {
       this.overlayService.wasClosed(this._id);
       this.overlayRef.dispose();
       this.closed.emit();

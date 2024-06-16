@@ -226,8 +226,9 @@
         </defs>
       </svg>
       <h1>Hello, {{ title }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+      <p #desc>Congratulations! Your app is running. 🎉</p>
     </div>
+    <overlay [connectedTo]="desc" [id]="6" [text]="'some links to go to!!'"></overlay>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
       <div class="pill-group">
@@ -237,8 +238,8 @@
           { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
           { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },
           { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },
-        ]; track item.title) {
-          <a
+        ]; let i = $index; track item.title) {
+          <a #link
             class="pill"
             [href]="item.link"
             target="_blank"
@@ -257,9 +258,10 @@
               />
             </svg>
           </a>
+          <overlay [connectedTo]="link" [id]="i+1" [text]="'some links to go to!!'"></overlay>
         }
       </div>
-      <div class="social-links">
+      <div #socialLinks class="social-links">
         <a
           href="https://github.com/angular/angular"
           aria-label="Github"
@@ -320,6 +322,7 @@
           </svg>
         </a>
       </div>
+      <!-- <overlay [connectedTo]="socialLinks" [id]="1" [text]="'some links to go to!!'"></overlay> -->
     </div>
   </div>
 </main>
